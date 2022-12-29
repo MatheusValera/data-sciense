@@ -1,0 +1,32 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+print('Lesson 02 - Load movie and rating database')
+movies = pd.read_csv('../../../database/movies.csv')
+grades = pd.read_csv('../../../database/ratings.csv')
+
+print('Lesson 02 - Analysis rating the movie with Id (1)')
+grades.query('movieId == 1').rating.mean()
+
+print('Lesson 02 - Analysis rating the movie with Id (2)')
+grades.query('movieId == 2').rating.mean()
+
+print('Lesson 02 - Group mean rating to movie')
+mean_for_movies = grades.groupby('movieId').mean()['rating']
+mean_for_movies.head()
+
+mean_for_movies.plot(kind= 'hist')
+
+sns.boxplot(mean_for_movies)
+
+mean_for_movies.describe()
+
+print('Lesson 02 - Plot distribution the ratings values')
+sns.displot(mean_for_movies)
+
+print('Lesson 02 - Plot distribution the ratings values, but i can choose values for the bins(box)')
+sns.displot(mean_for_movies, bins = 2)
+
+print('Lesson 02 - Using plytploy to vizualize the rating values')
+plt.hist(mean_for_movies)
