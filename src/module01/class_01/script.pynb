@@ -1,0 +1,25 @@
+import pandas as pd
+import seaborn as sns
+
+grades = pd.read_csv('../../../database/ratings.csv')
+print('Lesson 01 - Getting to know the database we are going to study')
+grades.head()
+
+print('Lesson 01 - Get grades unique')
+grades['rating'].unique()
+
+print('Lesson 01 - Get count about rating')
+grades['rating'].value_counts()
+
+print('Lesson 01 - Plot rating with this counts')
+grades.rating.plot(kind='hist')
+
+print('Lesson 01 - Get median and mean about rating values')
+print('Mean: ',grades.rating.mean())
+print('Median: ',grades.rating.median())
+
+print('Lesson 01 - We can get these values and others from the describe')
+grades.rating.describe()
+
+print('Lesson 01 - Using Seaborn for better visualization')
+sns.boxplot(grades.rating)
